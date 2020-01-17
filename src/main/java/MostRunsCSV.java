@@ -2,7 +2,7 @@ import com.opencsv.bean.CsvBindByName;
 
 public class MostRunsCSV {
 
-    @CsvBindByName(column = "pos",required = true )
+    @CsvBindByName(column = "pos", required = true)
     public int position;
 
     @CsvBindByName(column = "PLAYER", required = true)
