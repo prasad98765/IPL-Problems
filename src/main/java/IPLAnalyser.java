@@ -35,4 +35,10 @@ public class IPLAnalyser {
         Collections.sort(censusCSVList, mostRunsCSVComparable);
         return censusCSVList;
     }
+
+    public List<MostRunsCSV> getSortedBattingStrikeRates() {
+        Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) > 0) ? -1 : 1;
+        Collections.sort(censusCSVList, mostRunsCSVComparable);
+        return censusCSVList;
+    }
 }

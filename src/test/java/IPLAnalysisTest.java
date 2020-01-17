@@ -72,4 +72,17 @@ public class IPLAnalysisTest {
             Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
         }
     }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopBattingStrikeRates() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.loadIPLMostRunsPlayerData(IPL_MOST_RUNS_CSV_FILE_PATH);
+            List<MostRunsCSV> list = iplAnalyser.getSortedBattingStrikeRates();
+            Assert.assertEquals(333.33, list.get(0).strikeRate, 0);
+            Assert.assertEquals(63.15, list.get(99).strikeRate, 0);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }

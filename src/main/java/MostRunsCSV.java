@@ -30,7 +30,7 @@ public class MostRunsCSV {
     public int ballsFaced;
 
     @CsvBindByName(column = "SR", required = true)
-    public double strickeRate;
+    public double strikeRate;
 
     @CsvBindByName(column = "100", required = true)
     public int centuries;
@@ -56,7 +56,7 @@ public class MostRunsCSV {
                 ", highestScore=" + highestScore +
                 ", average=" + average +
                 ", ballsFaced=" + ballsFaced +
-                ", strickeRate=" + strickeRate +
+                ", strikeRate=" + strikeRate +
                 ", centuries=" + centuries +
                 ", halfcenturies=" + halfcenturies +
                 ", fours=" + fours +
