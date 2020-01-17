@@ -87,11 +87,24 @@ public class IPLAnalysisTest {
     }
 
     @Test
-    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopPlayerSixesAndFours() {
+    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopPlayer6sAnd4s() {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.loadIPLMostRunsPlayerData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayerSixandFours();
+            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayer6sand4s();
+            Assert.assertEquals("Andre Russell", list.get(0).player);
+            Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopPlayer6sAnd4sWithStrikeRate() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.loadIPLMostRunsPlayerData(IPL_MOST_RUNS_CSV_FILE_PATH);
+            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayer6sand4sWithStrikeRate();
             Assert.assertEquals("Andre Russell", list.get(0).player);
             Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
         } catch (IPLAnalyserException e) {
