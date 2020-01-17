@@ -10,14 +10,14 @@ import java.util.*;
 import static java.nio.file.Files.newBufferedReader;
 
 public class IPLAnalyser {
-    List<MostRunsCSV> censusCSVList = new ArrayList<>();
+    List<MostRunsCSV> PlayerList = new ArrayList<>();
 
 
     public int loadIPLMostRunsPlayerData(String csvFilePath) throws IPLAnalyserException {
         try (Reader reader = newBufferedReader(Paths.get(String.valueOf(csvFilePath)))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-            censusCSVList = icsvBuilder.getCSVFileInList(reader, MostRunsCSV.class);
-            return censusCSVList.size();
+            PlayerList = icsvBuilder.getCSVFileInList(reader, MostRunsCSV.class);
+            return PlayerList.size();
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
                     IPLAnalyserException.ExceptionType.INVALID_FILE_DATA);
@@ -32,13 +32,20 @@ public class IPLAnalyser {
 
     public List<MostRunsCSV> getSortedBattingAverage() {
         Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.average - (o2.average)) > 0) ? -1 : 1;
-        Collections.sort(censusCSVList, mostRunsCSVComparable);
-        return censusCSVList;
+        Collections.sort(PlayerList, mostRunsCSVComparable);
+        return PlayerList;
     }
 
     public List<MostRunsCSV> getSortedBattingStrikeRates() {
         Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) > 0) ? -1 : 1;
-        Collections.sort(censusCSVList, mostRunsCSVComparable);
-        return censusCSVList;
+        Collections.sort(PlayerList, mostRunsCSVComparable);
+        return PlayerList;
+    }
+
+    public List<MostRunsCSV> getSortedMostPlayerSixandFours() {
+        Comparator<MostRunsCSV> mostRunsCSVComparable = Comparator.comparingInt(o -> (o.sixes * 6 + (o.fours * 4)));
+        Collections.sort(PlayerList, mostRunsCSVComparable);
+        Collections.reverse(PlayerList);
+        return PlayerList;
     }
 }

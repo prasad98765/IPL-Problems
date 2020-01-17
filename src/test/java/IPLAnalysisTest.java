@@ -85,4 +85,17 @@ public class IPLAnalysisTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopPlayerSixesAndFours() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.loadIPLMostRunsPlayerData(IPL_MOST_RUNS_CSV_FILE_PATH);
+            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayerSixandFours();
+            Assert.assertEquals("Andre Russell", list.get(0).player);
+            Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
