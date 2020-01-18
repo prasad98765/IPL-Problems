@@ -1,34 +1,15 @@
-import CSvBuilderPackage.CSVBuilderException;
-import CSvBuilderPackage.CSVBuilderFactory;
-import CSvBuilderPackage.ICSVBuilder;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Paths;
-import java.util.*;
-
-import static java.nio.file.Files.newBufferedReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class IPLAnalyser {
-    List<MostRunsCSV> playerList = new ArrayList<>();
+    List playerList = new ArrayList<>();
 
-
-    public int loadIPLMostRunsPlayerData(String csvFilePath) throws IPLAnalyserException {
-        try (Reader reader = newBufferedReader(Paths.get(String.valueOf(csvFilePath)))) {
-            ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-            playerList = icsvBuilder.getCSVFileInList(reader, MostRunsCSV.class);
-            return playerList.size();
-        } catch (IOException e) {
-            throw new IPLAnalyserException(e.getMessage(),
-                    IPLAnalyserException.ExceptionType.INVALID_FILE_DATA);
-        } catch (CSVBuilderException e) {
-            throw new IPLAnalyserException(e.getMessage(), e.type.name());
-        } catch (RuntimeException e) {
-            throw new IPLAnalyserException(e.getMessage(),
-                    IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM);
-        }
+    public int lodeIPLData(String csvFilePath) throws IPLAnalyserException {
+        playerList = new DataLoader().loadIPLMostRunsPlayerData(csvFilePath);
+        return playerList.size();
     }
-
 
     public List<MostRunsCSV> getSortedBattingAverage() {
         Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.average - (o2.average)) > 0) ? -1 : 1;
