@@ -37,4 +37,13 @@ public class IPLAnalyser {
         Collections.reverse(playerList);
         return playerList;
     }
+    public List<MostRunsCSV> getSortedMostPlayerStrikeRateWithAverage() {
+        Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> (int) (o1.average - (o2.average));
+        mostRunsCSVComparable = mostRunsCSVComparable.thenComparing((o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) < 0) ? -1 : 1);
+        Collections.sort(playerList, mostRunsCSVComparable);
+        Collections.reverse(playerList);
+        System.out.print(playerList);
+        return playerList;
+    }
+
 }

@@ -111,4 +111,17 @@ public class IPLAnalysisTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopPlayerStrikeRateWithAverage() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
+            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayerStrikeRateWithAverage();
+            Assert.assertEquals("MS Dhoni", list.get(0).player);
+            Assert.assertEquals("Tim Southee", list.get(99).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
