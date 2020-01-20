@@ -1,6 +1,6 @@
 import com.opencsv.bean.CsvBindByName;
 
-public class MostRunsCSV {
+public class BatsmanData {
 
     @CsvBindByName(column = "pos", required = true)
     public int position;
@@ -46,7 +46,7 @@ public class MostRunsCSV {
 
     @Override
     public String toString() {
-        return "MostRunsCSV{" +
+        return "BatsmanData{" +
                 "position=" + position++ +
                 ", player='" + player +
                 ", match=" + match +
@@ -63,4 +63,6 @@ public class MostRunsCSV {
                 ", sixes=" + sixes +
                 '}';
     }
+
+
 }

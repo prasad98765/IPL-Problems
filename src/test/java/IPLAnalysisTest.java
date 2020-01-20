@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.util.List;
 
 public class IPLAnalysisTest {
-    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "./src/test/resources/IPL2019MostRunsPlayer.csv";
+    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "/home/admin1/IdeaProjects/IPL/src/test/resources/BattingData.csv";
     private static final String WRONG_CSV_FILE = "./src/test/resources/IPL2019Player.csv";
     private static final String WRONG_CSV_FILE_DATA = "/home/admin1/IdeaProjects/IPL/src/test/resources/WrongCSVFileData.csv";
 
@@ -13,6 +13,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             int numOfRecords = iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
+            System.out.println(numOfRecords);
             Assert.assertEquals(100, numOfRecords);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
@@ -24,7 +25,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedBattingAverage();
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(IPLAnalyser.fields.AVERAGE);
             Assert.assertEquals(83.2, list.get(0).average, 0);
             Assert.assertEquals(0.0, list.get(99).average, 0);
         } catch (IPLAnalyserException e) {
@@ -78,7 +79,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedBattingStrikeRates();
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(IPLAnalyser.fields.STRIKERATE);
             Assert.assertEquals(333.33, list.get(0).strikeRate, 0);
             Assert.assertEquals(63.15, list.get(99).strikeRate, 0);
         } catch (IPLAnalyserException e) {
@@ -91,9 +92,9 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayer6sand4s();
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(IPLAnalyser.fields.BOUNDARIES);
             Assert.assertEquals("Andre Russell", list.get(0).player);
-            Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
+            Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
         }
@@ -104,7 +105,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayer6sand4sWithStrikeRate();
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(IPLAnalyser.fields.STRIKERATE_WITH_BOUNDARIES);
             Assert.assertEquals("Andre Russell", list.get(0).player);
             Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
         } catch (IPLAnalyserException e) {
@@ -117,7 +118,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<MostRunsCSV> list = iplAnalyser.getSortedMostPlayerStrikeRateWithAverage();
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(IPLAnalyser.fields.STRIKERATE_WITH_AVERAGE);
             Assert.assertEquals("MS Dhoni", list.get(0).player);
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {

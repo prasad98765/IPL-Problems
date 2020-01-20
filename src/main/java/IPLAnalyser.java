@@ -1,48 +1,40 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class IPLAnalyser {
-    List playerList = new ArrayList<>();
+
+    List<BatsmanData> playerList = null;
+    Map<fields, Comparator<BatsmanData>> mapComp = new HashMap();
+
+    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE}
+
 
     public int lodeIPLData(String csvFilePath) throws IPLAnalyserException {
         playerList = new DataLoader().loadIPLMostRunsPlayerData(csvFilePath);
         return playerList.size();
     }
 
-    public List<MostRunsCSV> getSortedBattingAverage() {
-        Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.average - (o2.average)) > 0) ? -1 : 1;
-        Collections.sort(playerList, mostRunsCSVComparable);
-        return playerList;
+    public Comparator getParameterFields(IPLAnalyser.fields parameter) {
+        Comparator<BatsmanData> avgComparator = Comparator.comparing(batsmanRun -> batsmanRun.average, Comparator.reverseOrder());
+        Comparator<BatsmanData> strikeRateComparator = Comparator.comparing(batsmanRun -> batsmanRun.strikeRate, Comparator.reverseOrder());
+        Comparator<BatsmanData> boundariesComparator = Comparator.comparing(batsman -> (batsman.sixes * 6 + batsman.fours * 4), Comparator.reverseOrder());
+        Comparator<BatsmanData> strikeRateWithBoundaryComparator = Comparator.comparing(batsman -> (batsman.sixes * 6 + batsman.fours * 4), Comparator.reverseOrder());
+        Comparator<BatsmanData> strikeRateWithAverageComparator = Comparator.comparing(batsman -> batsman.average, Comparator.reverseOrder());
+        mapComp.put(fields.AVERAGE, avgComparator);
+        mapComp.put(fields.STRIKERATE, strikeRateComparator);
+        mapComp.put(fields.BOUNDARIES, boundariesComparator);
+        mapComp.put(fields.STRIKERATE_WITH_BOUNDARIES, strikeRateWithBoundaryComparator.thenComparing(strikeRateComparator));
+        mapComp.put(fields.STRIKERATE_WITH_AVERAGE, strikeRateWithAverageComparator.thenComparing(strikeRateComparator));
+        Comparator<BatsmanData> comparator = mapComp.get(parameter);
+        return comparator;
     }
 
-    public List<MostRunsCSV> getSortedBattingStrikeRates() {
-        Comparator<MostRunsCSV> mostRunsCSVComparable = (o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) > 0) ? -1 : 1;
-        Collections.sort(playerList, mostRunsCSVComparable);
-        return playerList;
-    }
-
-    public List<MostRunsCSV> getSortedMostPlayer6sand4s() {
-        Comparator<MostRunsCSV> mostRunsCSVComparable = Comparator.comparingInt(o -> (o.sixes * 6 + (o.fours * 4)));
-        Collections.sort(playerList, mostRunsCSVComparable);
-        Collections.reverse(playerList);
-        return playerList;
-    }
-
-    public List<MostRunsCSV> getSortedMostPlayer6sand4sWithStrikeRate() {
-        Comparator<MostRunsCSV> mostRunsCSVComparable = Comparator.comparingInt(o -> (o.sixes * 6 + (o.fours * 4)));
-        mostRunsCSVComparable = mostRunsCSVComparable.thenComparing((o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) < 0) ? -1 : 1);
-        Collections.sort(playerList, mostRunsCSVComparable);
-        Collections.reverse(playerList);
-        return playerList;
-    }
-    public List<MostRunsCSV> getSortedMostPlayerStrikeRateWithAverage() {
-        Comparator<MostRunsCSV> mostRunsCSVComparable = Comparator.comparingDouble(o -> o.average);
-        mostRunsCSVComparable = mostRunsCSVComparable.thenComparing((o1, o2) -> ((o1.strikeRate - (o2.strikeRate)) < 0) ? -1 : 1);
-        Collections.sort(playerList, mostRunsCSVComparable);
-        Collections.reverse(playerList);
-        return playerList;
+    public ArrayList getSortedDatafieldsWise(IPLAnalyser.fields parameter) {
+        Comparator<BatsmanData> batsmanComparator = new IPLAnalyser().getParameterFields(parameter);
+        ArrayList batsmanList = playerList.stream().
+                sorted(batsmanComparator).
+                collect(Collectors.toCollection(ArrayList::new));
+        return batsmanList;
     }
 
 }
