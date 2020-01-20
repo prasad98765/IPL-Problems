@@ -131,7 +131,7 @@ public class IPLAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.MAXIMUMRUN_WITH_AVERAGE);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.RUN_WITH_AVERAGE);
             Assert.assertEquals("David Warner ", list.get(0).player);
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
