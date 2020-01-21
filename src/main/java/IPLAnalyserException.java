@@ -6,7 +6,7 @@ public class IPLAnalyserException extends Exception {
     }
 
     enum ExceptionType {
-        INVALID_FILE_DATA, INVALID_FILE_DATA_PROBLEM
+        INVALID_FILE_DATA, INVALID_FILE_DATA_PROBLEM,INCORRECT_TYPE
     }
 
     ExceptionType type;

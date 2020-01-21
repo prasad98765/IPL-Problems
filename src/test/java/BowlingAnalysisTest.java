@@ -65,8 +65,21 @@ public class BowlingAnalysisTest {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
             List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE_WITH_AVERAGE);
-            Assert.assertEquals("Lasith Malinga", list.get(0).player);
-            Assert.assertEquals("Liam Livingstone", list.get(98).player);
+            Assert.assertEquals("Krishnappa Gowtham", list.get(98).player);
+            Assert.assertEquals("Kagiso Rabada", list.get(0).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnBestAverageWithStrikeRate() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
+            iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_AVERAGE_WITH_STRIKE_RATE);
+            Assert.assertEquals("Shivam Dube", list.get(0).player);
+            Assert.assertEquals("Krishnappa Gowtham", list.get(98).player);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
         }
