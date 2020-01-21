@@ -15,14 +15,14 @@ import static java.nio.file.Files.newBufferedReader;
 public class DataLoader {
     List<CricketDataDAO> playerList = new ArrayList<>();
 
-    public<E> List<CricketDataDAO> loadIPLRunsPlayerData(Class<E> cricketCSVClass,String... csvFilePath) throws IPLAnalyserException {
+    public <E> List<CricketDataDAO> loadIPLRunsPlayerData(Class<E> cricketCSVClass, String... csvFilePath) throws IPLAnalyserException {
         try (Reader reader = newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])));) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
             List<E> playerList1 = icsvBuilder.getCSVFileInList(reader, cricketCSVClass);
             if (cricketCSVClass.getName().equals("BatsmanData"))
-            StreamSupport.stream(playerList1.spliterator(), false)
-                    .map(BatsmanData.class::cast)
-                    .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
+                StreamSupport.stream(playerList1.spliterator(), false)
+                        .map(BatsmanData.class::cast)
+                        .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
             if (cricketCSVClass.getName().equals("BowlingData"))
                 StreamSupport.stream(playerList1.spliterator(), false)
                         .map(BowlingData.class::cast)
