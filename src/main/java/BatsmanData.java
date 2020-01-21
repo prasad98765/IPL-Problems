@@ -45,7 +45,6 @@ public class BatsmanData {
     public int sixes;
 
 
-
     @Override
     public String toString() {
         return "BatsmanData{" +

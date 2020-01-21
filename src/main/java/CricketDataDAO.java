@@ -42,6 +42,7 @@ public class CricketDataDAO {
         this.player = wicketsData.player;
         this.match = wicketsData.match;
         this.innings = wicketsData.innings;
+        this.strikeRate = wicketsData.strickRate;
         this.over = wicketsData.over;
         this.runs = wicketsData.runs;
         this.wicket = wicketsData.wicket;

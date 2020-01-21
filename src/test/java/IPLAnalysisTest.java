@@ -140,7 +140,7 @@ public class IPLAnalysisTest {
     }
 
     @Test
-    public void givenIPLWicketPlayerDataCSVFile_ReturnsCorrectRecords() {
+    public void givenIPLBowlingPlayerDataCSVFile_ReturnsCorrectRecords() {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             int numOfRecords = iplAnalyser.lodeIPLWicketData(IPL_MOST_WKTS_CSV_FILE_PATH);
@@ -151,13 +151,26 @@ public class IPLAnalysisTest {
     }
 
     @Test
-    public void givenIPLWicketPlayerDataCSVFile_shouldReturnTopBowlingAvg() {
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnTopBowlingAvg() {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser();
             iplAnalyser.lodeIPLWicketData(IPL_MOST_WKTS_CSV_FILE_PATH);
             List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise("Bowling",FieldWiseSorting.fields.BOWLING_AVERAGE);
             Assert.assertEquals(166.0, list.get(0).average, 0);
             Assert.assertEquals(0.0, list.get(98).average, 0);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnTopStrikeRate() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLWicketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise("Bowling",FieldWiseSorting.fields.BOWLING_STRIKE_RATE);
+            Assert.assertEquals(120.0, list.get(0).strikeRate, 0);
+            Assert.assertEquals(0.0, list.get(98).strikeRate, 0);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
         }
