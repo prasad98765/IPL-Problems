@@ -23,9 +23,9 @@ public class DataLoader {
             StreamSupport.stream(playerList1.spliterator(), false)
                     .map(BatsmanData.class::cast)
                     .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
-            if (cricketCSVClass.getName().equals("WicketsData"))
+            if (cricketCSVClass.getName().equals("BowlingData"))
                 StreamSupport.stream(playerList1.spliterator(), false)
-                        .map(WicketsData.class::cast)
+                        .map(BowlingData.class::cast)
                         .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
             return playerList;
         } catch (IOException e) {

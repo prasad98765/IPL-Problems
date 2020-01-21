@@ -1,6 +1,6 @@
 import com.opencsv.bean.CsvBindByName;
 
-public class WicketsData {
+public class BowlingData {
 
     @CsvBindByName(column = "pos", required = true)
     public int position;
@@ -43,7 +43,7 @@ public class WicketsData {
 
     @Override
     public String toString() {
-        return "WicketsData{" +
+        return "BowlingData{" +
                 "position=" + position +
                 ", player='" + player + '\'' +
                 ", match=" + match +

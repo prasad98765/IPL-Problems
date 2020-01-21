@@ -13,24 +13,21 @@ public class IPLAnalyser {
     }
 
     public int lodeIPLWicketData(String csvFilePath) throws IPLAnalyserException {
-        playerList = new DataLoader().loadIPLRunsPlayerData(WicketsData.class, csvFilePath);
+        playerList = new DataLoader().loadIPLRunsPlayerData(BowlingData.class, csvFilePath);
         return playerList.size();
     }
 
-    public ArrayList getSortedDatafieldsWise(FieldWiseSorting.fields parameter) {
-        Comparator<CricketDataDAO> batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
+    public ArrayList getSortedDatafieldsWise(String type,FieldWiseSorting.fields parameter) {
+        Comparator<CricketDataDAO> batsmanComparator = null;
+        if (type.equals("Batting")) {
+            batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
+        }
+        if (type.equals("Bowling")){
+            batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
+        }
         ArrayList batsmanList = playerList.stream().
                 sorted(batsmanComparator).
                 collect(Collectors.toCollection(ArrayList::new));
         return batsmanList;
     }
-
-    public ArrayList getSortedBowlerDatafieldsWise(FieldWiseSorting.fields parameter) {
-        Comparator<CricketDataDAO> batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
-        ArrayList WicketList = playerList.stream().
-                sorted(batsmanComparator).
-                collect(Collectors.toCollection(ArrayList::new));
-        return WicketList;
-    }
-
 }

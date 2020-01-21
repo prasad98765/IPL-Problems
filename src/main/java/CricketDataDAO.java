@@ -37,7 +37,7 @@ public class CricketDataDAO {
         this.sixes = batsmanData.sixes;
     }
 
-    public CricketDataDAO(WicketsData wicketsData) {
+    public CricketDataDAO(BowlingData wicketsData) {
         this.position = wicketsData.position;
         this.player = wicketsData.player;
         this.match = wicketsData.match;
