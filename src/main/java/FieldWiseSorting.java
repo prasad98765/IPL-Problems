@@ -6,7 +6,7 @@ public class FieldWiseSorting {
 
     static Map<fields, Comparator<CricketDataDAO>> playerData = new HashMap();
 
-    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE}
+    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE,BOWLING_STRIKE_RATE_WITH_AVERAGE}
 
 
     public Comparator<CricketDataDAO> getParameterFields(FieldWiseSorting.fields parameter) {
@@ -16,9 +16,10 @@ public class FieldWiseSorting {
         Comparator<CricketDataDAO> strikeRateWithBoundaryComparator = Comparator.comparing(batsman -> (batsman.sixes * 6 + batsman.fours * 4), Comparator.reverseOrder());
         Comparator<CricketDataDAO> strikeRateWithAverageComparator = Comparator.comparing(batsman -> batsman.average, Comparator.reverseOrder());
         Comparator<CricketDataDAO> RunWithBestAverageComparator = Comparator.comparing(batsman -> batsman.runs, Comparator.reverseOrder());
-        Comparator<CricketDataDAO> bowlingAverageComparator = Comparator.comparing(batsman -> batsman.average, Comparator.reverseOrder());
-        Comparator<CricketDataDAO> bowlingStrikeRateComparator = Comparator.comparing(batsman -> batsman.strikeRate, Comparator.reverseOrder());
-        Comparator<CricketDataDAO> bowlingEconomyComparator = Comparator.comparing(batsman -> batsman.econ, Comparator.reverseOrder());
+        Comparator<CricketDataDAO> bowlingAverageComparator = Comparator.comparing(bowler -> bowler.average, Comparator.reverseOrder());
+        Comparator<CricketDataDAO> bowlingStrikeRateComparator = Comparator.comparing(bowler -> bowler.strikeRate, Comparator.reverseOrder());
+        Comparator<CricketDataDAO> bowlingEconomyComparator = Comparator.comparing(bowler -> bowler.econ, Comparator.reverseOrder());
+        Comparator<CricketDataDAO> strikeRateWith5wAnd4wComparator = Comparator.comparing(bowler -> (bowler.fourWicks * 5 + bowler.fiveWicks * 5), Comparator.reverseOrder());
         playerData.put(FieldWiseSorting.fields.AVERAGE, avgComparator);
         playerData.put(FieldWiseSorting.fields.STRIKERATE, strikeRateComparator);
         playerData.put(FieldWiseSorting.fields.BOUNDARIES, boundariesComparator);
@@ -28,6 +29,7 @@ public class FieldWiseSorting {
         playerData.put(fields.BOWLING_AVERAGE, bowlingAverageComparator);
         playerData.put(fields.BOWLING_STRIKE_RATE, bowlingStrikeRateComparator);
         playerData.put(fields.BOWLING_ECONOMY_RATE, bowlingEconomyComparator);
+        playerData.put(fields.BOWLING_STRIKE_RATE_WITH_AVERAGE, strikeRateWith5wAnd4wComparator.thenComparing(bowlingStrikeRateComparator));
         return playerData.get(parameter);
     }
 }

@@ -59,6 +59,19 @@ public class BowlingAnalysisTest {
         }
     }
 
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnBestStrikeRateWith5wAnd4w() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
+            iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE_WITH_AVERAGE);
+            Assert.assertEquals("Lasith Malinga", list.get(0).player);
+            Assert.assertEquals("Liam Livingstone", list.get(98).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Exception test
     @Test
     public void givenWrongIPLCSVFile_shouldReturnException() {
@@ -100,4 +113,6 @@ public class BowlingAnalysisTest {
             Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
         }
     }
+
+
 }
