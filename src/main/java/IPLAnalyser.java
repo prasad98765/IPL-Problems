@@ -8,18 +8,16 @@ public class IPLAnalyser {
     List<CricketDataDAO> playerList = new ArrayList<>();
 
     public int lodeIPLRunsData(String csvFilePath) throws IPLAnalyserException {
-        playerList = new DataLoader().loadIPLRunsPlayerData(csvFilePath);
+        playerList = new DataLoader().loadIPLRunsPlayerData(BatsmanData.class, csvFilePath);
         return playerList.size();
     }
 
     public int lodeIPLWicketData(String csvFilePath) throws IPLAnalyserException {
-        playerList = new DataLoader().loadIPLWicketsPlayerData(csvFilePath);
+        playerList = new DataLoader().loadIPLRunsPlayerData(WicketsData.class, csvFilePath);
         return playerList.size();
     }
 
-
-
-    public ArrayList getBatsmanSortedDatafieldsWise(FieldWiseSorting.fields parameter) {
+    public ArrayList getSortedDatafieldsWise(FieldWiseSorting.fields parameter) {
         Comparator<CricketDataDAO> batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
         ArrayList batsmanList = playerList.stream().
                 sorted(batsmanComparator).
