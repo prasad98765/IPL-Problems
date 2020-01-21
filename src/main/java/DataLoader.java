@@ -8,16 +8,20 @@ import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import static java.nio.file.Files.newBufferedReader;
 
 public class DataLoader {
-    List<BatsmanData> playerList = new ArrayList<>();
+    List<CricketDataDAO> playerList = new ArrayList<>();
 
-    public List<BatsmanData> loadIPLMostRunsPlayerData(String csvFilePath) throws IPLAnalyserException {
+    public<E> List<CricketDataDAO> loadIPLRunsPlayerData(String csvFilePath) throws IPLAnalyserException {
         try (Reader reader = newBufferedReader(Paths.get(String.valueOf(csvFilePath)));) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-            playerList = icsvBuilder.getCSVFileInList(reader, BatsmanData.class);
+            List<E> playerList1 = icsvBuilder.getCSVFileInList(reader, BatsmanData.class);
+            StreamSupport.stream(playerList1.spliterator(), false)
+                    .map(BatsmanData.class::cast)
+                    .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
             return playerList;
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
@@ -29,4 +33,25 @@ public class DataLoader {
                     IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM);
         }
     }
+
+    public<E> List<CricketDataDAO> loadIPLWicketsPlayerData(String csvFilePath) throws IPLAnalyserException {
+        try (Reader reader = newBufferedReader(Paths.get(String.valueOf(csvFilePath)));) {
+            ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
+            List<E> playerList1 = icsvBuilder.getCSVFileInList(reader, WicketsData.class);
+            StreamSupport.stream(playerList1.spliterator(), false)
+                    .map(WicketsData.class::cast)
+                    .forEach(cricketCSV -> playerList.add(new CricketDataDAO(cricketCSV)));
+            return playerList;
+        } catch (IOException e) {
+            throw new IPLAnalyserException(e.getMessage(),
+                    IPLAnalyserException.ExceptionType.INVALID_FILE_DATA);
+        } catch (CSVBuilderException e) {
+            throw new IPLAnalyserException(e.getMessage(), e.type.name());
+        } catch (RuntimeException e) {
+            throw new IPLAnalyserException(e.getMessage(),
+                    IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM);
+        }
+    }
+
+
 }
