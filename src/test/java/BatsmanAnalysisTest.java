@@ -32,46 +32,6 @@ public class BatsmanAnalysisTest {
         }
     }
 
-    @Test
-    public void givenWrongIPLCSVFile_shouldReturnException() {
-        try {
-            IPLAnalyser iplAnalyser = new IPLAnalyser();
-            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE);
-        } catch (IPLAnalyserException e) {
-            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA, e.type);
-        }
-    }
-
-    @Test
-    public void givenIPLRunsPlayerDataCSVFile_WithWrongType_ShouldCustomException() {
-        try {
-            IPLAnalyser iplAnalyser = new IPLAnalyser();
-            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
-        } catch (IPLAnalyserException e) {
-            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
-        }
-    }
-
-    @Test
-    public void givenIPLRunsPlayerDataCSVFile_WithWrongDelimiter_ShouldCustomException() {
-        try {
-            IPLAnalyser iplAnalyser = new IPLAnalyser();
-            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
-        } catch (IPLAnalyserException e) {
-            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
-        }
-
-    }
-
-    @Test
-    public void givenIPLRunsPlayerDataCSVFile_WithWrongHeader_ShouldCustomException() {
-        try {
-            IPLAnalyser iplAnalyser = new IPLAnalyser();
-            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
-        } catch (IPLAnalyserException e) {
-            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
-        }
-    }
 
     @Test
     public void givenIPLRunsPlayerDataCSVFile_shouldReturnTopBattingStrikeRates() {
@@ -135,6 +95,48 @@ public class BatsmanAnalysisTest {
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
+        }
+    }
+
+    //Exception test
+    @Test
+    public void givenWrongIPLCSVFile_shouldReturnException() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE);
+        } catch (IPLAnalyserException e) {
+            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_WithWrongType_ShouldCustomException() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
+        } catch (IPLAnalyserException e) {
+            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_WithWrongDelimiter_ShouldCustomException() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
+        } catch (IPLAnalyserException e) {
+            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
+        }
+
+    }
+
+    @Test
+    public void givenIPLRunsPlayerDataCSVFile_WithWrongHeader_ShouldCustomException() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLRunsData(WRONG_CSV_FILE_DATA);
+        } catch (IPLAnalyserException e) {
+            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
         }
     }
 

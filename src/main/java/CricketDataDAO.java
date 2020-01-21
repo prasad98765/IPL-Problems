@@ -52,4 +52,30 @@ public class CricketDataDAO {
         this.fourWicks = wicketsData.fourWicks;
         this.fiveWicks = wicketsData.fiveWicks;
     }
+
+    @Override
+    public String toString() {
+        return "CricketDataDAO{" +
+                "position=" + position +
+                ", player='" + player + '\'' +
+                ", match=" + match +
+                ", innings=" + innings +
+                ", notOut=" + notOut +
+                ", runs=" + runs +
+                ", highestScore=" + highestScore +
+                ", average=" + average +
+                ", ballsFaced=" + ballsFaced +
+                ", strikeRate=" + strikeRate +
+                ", centuries=" + centuries +
+                ", halfcenturies=" + halfcenturies +
+                ", fours=" + fours +
+                ", sixes=" + sixes +
+                ", over=" + over +
+                ", wicket=" + wicket +
+                ", betsBowlingInning=" + betsBowlingInning +
+                ", econ=" + econ +
+                ", fourWicks=" + fourWicks +
+                ", fiveWicks=" + fiveWicks +
+                '}';
+    }
 }

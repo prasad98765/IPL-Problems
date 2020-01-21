@@ -45,6 +45,20 @@ public class BowlingAnalysisTest {
         }
     }
 
+
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnBestEconomy() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLWicketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise("Bowling", FieldWiseSorting.fields.BOWLING_ECONOMY_RATE);
+            Assert.assertEquals(13.5, list.get(0).econ, 0);
+            Assert.assertEquals(4.8, list.get(98).econ, 0);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Exception test
     @Test
     public void givenWrongIPLCSVFile_shouldReturnException() {
