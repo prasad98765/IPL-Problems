@@ -25,4 +25,12 @@ public class IPLAnalyser {
         return batsmanList;
     }
 
+    public ArrayList getSortedBowlerDatafieldsWise(FieldWiseSorting.fields parameter) {
+        Comparator<CricketDataDAO> batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
+        ArrayList WicketList = playerList.stream().
+                sorted(batsmanComparator).
+                collect(Collectors.toCollection(ArrayList::new));
+        return WicketList;
+    }
+
 }

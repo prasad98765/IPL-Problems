@@ -149,4 +149,17 @@ public class IPLAnalysisTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLWicketPlayerDataCSVFile_shouldReturnTopBowlingAvg() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser();
+            iplAnalyser.lodeIPLWicketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<CricketDataDAO> list = iplAnalyser.getSortedBowlerDatafieldsWise(FieldWiseSorting.fields.BOWLING_AVERAGE);
+            Assert.assertEquals(166.0, list.get(0).average, 0);
+            Assert.assertEquals(0.0, list.get(98).average, 0);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }
