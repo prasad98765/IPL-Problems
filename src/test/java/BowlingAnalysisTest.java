@@ -85,6 +85,19 @@ public class BowlingAnalysisTest {
         }
     }
 
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnBestWicketsWithBestAverage() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
+            iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_WICKET_WITH_AVERAGE);
+            Assert.assertEquals("Imran Tahir", list.get(0).player);
+            Assert.assertEquals("Liam Livingstone", list.get(98).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Exception test
     @Test
     public void givenWrongIPLCSVFile_shouldReturnException() {
