@@ -1,7 +1,7 @@
-import java.util.List;
+import java.util.Map;
 
 public class LoadDataFactory {
-    public static List<CricketDataDAO> loadCricketData(IPLAnalyser.Player player, String csvFilePath) throws IPLAnalyserException {
+    public static Map<String, CricketDataDAO> loadCricketData(IPLAnalyser.Player player, String csvFilePath) throws IPLAnalyserException {
         if (player.equals(IPLAnalyser.Player.Batting)) {
             return new DataLoader().loadIPLRunsPlayerData(BatsmanData.class, csvFilePath);
         }

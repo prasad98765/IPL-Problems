@@ -53,7 +53,7 @@ public class BatsmanAnalysisTest {
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
             List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOUNDARIES);
             Assert.assertEquals("Andre Russell", list.get(0).player);
-            Assert.assertEquals("Tim Southee", list.get(99).player);
+            Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
         }
