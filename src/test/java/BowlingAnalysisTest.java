@@ -24,7 +24,7 @@ public class BowlingAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise( FieldWiseSorting.fields.BOWLING_AVERAGE);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise( FieldWiseSorting.fields.BOWLING_AVERAGE);
             Assert.assertEquals(166.0, list.get(0).average, 0);
             Assert.assertEquals(0.0, list.get(98).average, 0);
         } catch (IPLAnalyserException e) {
@@ -37,9 +37,9 @@ public class BowlingAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE);
-            Assert.assertEquals(120.0, list.get(0).strikeRate, 0);
-            Assert.assertEquals(0.0, list.get(98).strikeRate, 0);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE);
+            Assert.assertEquals(120.0, list.get(0).strickRate, 0);
+            Assert.assertEquals(0.0, list.get(98).strickRate, 0);
         } catch (IPLAnalyserException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class BowlingAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_ECONOMY_RATE);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_ECONOMY_RATE);
             Assert.assertEquals(13.5, list.get(0).econ, 0);
             Assert.assertEquals(4.8, list.get(98).econ, 0);
         } catch (IPLAnalyserException e) {
@@ -64,7 +64,7 @@ public class BowlingAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE_WITH_AVERAGE);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_STRIKE_RATE_WITH_AVERAGE);
             Assert.assertEquals("Krishnappa Gowtham", list.get(98).player);
             Assert.assertEquals("Kagiso Rabada", list.get(0).player);
         } catch (IPLAnalyserException e) {
@@ -77,7 +77,7 @@ public class BowlingAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Bowling);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_WKTS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_AVERAGE_WITH_STRIKE_RATE);
+            List<BowlingData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOWLING_AVERAGE_WITH_STRIKE_RATE);
             Assert.assertEquals("Shivam Dube", list.get(0).player);
             Assert.assertEquals("Krishnappa Gowtham", list.get(98).player);
         } catch (IPLAnalyserException e) {

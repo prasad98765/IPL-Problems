@@ -41,6 +41,25 @@ public class BowlingData {
     @CsvBindByName(column = "5w", required = true)
     public int fiveWicks;
 
+    public BowlingData(int position, String player, int match, int innings, double strikeRate, double over, int runs, int wicket, int betsBowlingInning, double average, double econ, int fourWicks, int fiveWicks) {
+        this.position =position;
+        this.player = player;
+        this.match = match;
+        this.innings = innings;
+        this.strickRate = strikeRate;
+        this.over = over;
+        this.runs = runs;
+        this.wicket = wicket;
+        this.betsBowlingInning = betsBowlingInning;
+        this.average = average;
+        this.econ = econ;
+        this.fourWicks = fourWicks;
+        this.fiveWicks = fiveWicks;
+    }
+
+    public BowlingData() {
+    }
+
     @Override
     public String toString() {
         return "BowlingData{" +
@@ -52,7 +71,6 @@ public class BowlingData {
                 ", runs=" + runs +
                 ", wicket=" + wicket +
                 ", betsBowlingInning=" + betsBowlingInning +
-                ", player=" + player +
                 ", average=" + average +
                 ", econ=" + econ +
                 ", strickRate=" + strickRate +

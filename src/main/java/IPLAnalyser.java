@@ -31,8 +31,9 @@ public class IPLAnalyser {
             batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
         }
         ArrayList batsmanList = playerList.stream().
-                sorted(batsmanComparator).
-                collect(Collectors.toCollection(ArrayList::new));
+                sorted(batsmanComparator)
+                .map(batsmanDAO -> batsmanDAO.getIPLDTO(player))
+                .collect(Collectors.toCollection(ArrayList::new));
         return batsmanList;
     }
 }

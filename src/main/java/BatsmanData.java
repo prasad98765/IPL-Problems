@@ -44,6 +44,25 @@ public class BatsmanData {
     @CsvBindByName(column = "6s", required = true)
     public int sixes;
 
+    public BatsmanData(int position, String player, int match, int innings, int notOut, int runs, int highestScore, double average, int ballsFaced, double strikeRate, int centuries,int halfcenturies, int fours, int sixes) {
+        this.position=position;
+        this.player=player;
+        this.match=match;
+        this.innings=innings;
+        this.notOut=notOut;
+        this.runs=runs;
+        this.highestScore=highestScore;
+        this.average=average;
+        this.ballsFaced=ballsFaced;
+        this.strikeRate=strikeRate;
+        this.centuries=centuries;
+        this.halfcenturies=halfcenturies;
+        this.fours=fours;
+        this.sixes=sixes;
+    }
+
+    public BatsmanData() {
+    }
 
     @Override
     public String toString() {

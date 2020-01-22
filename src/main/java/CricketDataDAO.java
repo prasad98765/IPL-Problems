@@ -78,4 +78,10 @@ public class CricketDataDAO {
                 ", fiveWicks=" + fiveWicks +
                 '}';
     }
+
+    public Object getIPLDTO(IPLAnalyser.Player players) {
+        if (players.equals(IPLAnalyser.Player.Batting))
+            return new BatsmanData(position, player, match, innings, notOut, runs, highestScore, average, ballsFaced, strikeRate, centuries, halfcenturies, fours, sixes);
+            return new BowlingData(position, player, match, innings, strikeRate, over, runs, wicket, betsBowlingInning, average, econ, fourWicks, fiveWicks);
+    }
 }

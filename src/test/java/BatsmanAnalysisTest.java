@@ -24,7 +24,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.AVERAGE);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.AVERAGE);
             Assert.assertEquals(83.2, list.get(0).average, 0);
             Assert.assertEquals(0.0, list.get(99).average, 0);
         } catch (IPLAnalyserException e) {
@@ -38,7 +38,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE);
             Assert.assertEquals(333.33, list.get(0).strikeRate, 0);
             Assert.assertEquals(63.15, list.get(99).strikeRate, 0);
         } catch (IPLAnalyserException e) {
@@ -51,7 +51,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOUNDARIES);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BOUNDARIES);
             Assert.assertEquals("Andre Russell", list.get(0).player);
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
@@ -64,7 +64,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE_WITH_BOUNDARIES);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE_WITH_BOUNDARIES);
             Assert.assertEquals("Andre Russell", list.get(0).player);
             Assert.assertEquals("Shakib Al Hasan", list.get(99).player);
         } catch (IPLAnalyserException e) {
@@ -77,7 +77,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE_WITH_AVERAGE);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.STRIKERATE_WITH_AVERAGE);
             Assert.assertEquals("MS Dhoni", list.get(0).player);
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
@@ -90,7 +90,7 @@ public class BatsmanAnalysisTest {
         try {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH);
-            List<CricketDataDAO> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.RUN_WITH_AVERAGE);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.RUN_WITH_AVERAGE);
             Assert.assertEquals("David Warner ", list.get(0).player);
             Assert.assertEquals("Tim Southee", list.get(99).player);
         } catch (IPLAnalyserException e) {
