@@ -19,4 +19,16 @@ public class BattingAndBowlingAnalysis {
             e.printStackTrace();
         }
     }
+    @Test
+    public void givenIPLBowlingPlayerDataCSVFile_shouldReturnAllRounder() {
+        try {
+            IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
+            iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH,IPL_MOST_WKTS_CSV_FILE_PATH);
+            List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.ALL_ROUNDER);
+            Assert.assertEquals("Andre Russell",list.get(0).player);
+            Assert.assertEquals("Shreyas Iyer",list.get(99).player);
+        } catch (IPLAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
 }

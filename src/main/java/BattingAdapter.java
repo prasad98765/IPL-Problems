@@ -26,7 +26,9 @@ public class BattingAdapter extends DataLoader {
             List<BowlingData> playerList1 = icsvBuilder.getCSVFileInList(reader, BowlingData.class);
             StreamSupport.stream(playerList1.spliterator(), false)
                     .filter(Bowlingdata -> cricketDataDAOMap.get(Bowlingdata.player) != null)
-                    .forEach(Bowlingdata -> cricketDataDAOMap.get(Bowlingdata.player).bolavg = Bowlingdata.average);
+                    .forEach(Bowlingdata -> {cricketDataDAOMap.get(Bowlingdata.player)
+                            .bolavg = Bowlingdata.average;
+                    cricketDataDAOMap.get(Bowlingdata.player).wicket = Bowlingdata.wicket;});
             return cricketDataDAOMap.size();
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),

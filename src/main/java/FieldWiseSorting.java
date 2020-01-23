@@ -6,7 +6,7 @@ public class FieldWiseSorting {
 
     static Map<fields, Comparator<CricketDataDAO>> playerData = new HashMap();
 
-    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE,BOWLING_STRIKE_RATE_WITH_AVERAGE,BOWLING_AVERAGE_WITH_STRIKE_RATE,BOWLING_WICKET_WITH_AVERAGE,BATTING_BOWLING_AVG }
+    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE,BOWLING_STRIKE_RATE_WITH_AVERAGE,BOWLING_AVERAGE_WITH_STRIKE_RATE,BOWLING_WICKET_WITH_AVERAGE,BATTING_BOWLING_AVG,ALL_ROUNDER }
 
 
     public Comparator<CricketDataDAO> getParameterFields(FieldWiseSorting.fields parameter) {
@@ -21,6 +21,11 @@ public class FieldWiseSorting {
         Comparator<CricketDataDAO> bowlingEconomyComparator = Comparator.comparing(bowler -> bowler.econ, Comparator.reverseOrder());
         Comparator<CricketDataDAO> strikeRateWith5wAnd4wComparator = Comparator.comparing(bowler -> (bowler.fourWicks * 4 + bowler.fiveWicks * 5), Comparator.reverseOrder());
         Comparator<CricketDataDAO> wicketWithAverageComparator = Comparator.comparing(bowler -> bowler.wicket, Comparator.reverseOrder());
+        Comparator<CricketDataDAO> allRounder = Comparator.comparing(CricketDataDAO -> {
+            if(CricketDataDAO.wicket>7 && CricketDataDAO.runs>150)
+           return CricketDataDAO.runs +(CricketDataDAO.wicket*20);
+            return 0;
+        });
 
         playerData.put(FieldWiseSorting.fields.AVERAGE, avgComparator);
         playerData.put(FieldWiseSorting.fields.STRIKERATE, strikeRateComparator);
@@ -35,6 +40,7 @@ public class FieldWiseSorting {
         playerData.put(fields.BOWLING_AVERAGE_WITH_STRIKE_RATE, bowlingAverageComparator.reversed().thenComparing(bowlingStrikeRateComparator.reversed()));
         playerData.put(fields.BOWLING_WICKET_WITH_AVERAGE, wicketWithAverageComparator.thenComparing(bowlingAverageComparator));
         playerData.put(fields.BATTING_BOWLING_AVG, avgComparator.thenComparing(bowlingAverageComparator));
+        playerData.put(fields.ALL_ROUNDER,allRounder.reversed() );
         return playerData.get(parameter);
     }
 }
