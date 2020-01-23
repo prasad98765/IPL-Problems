@@ -19,6 +19,7 @@ public class CricketDataDAO {
     public double econ;
     public int fourWicks;
     public int fiveWicks;
+    public double bolavg;
 
     public CricketDataDAO(BatsmanData batsmanData) {
         this.position = batsmanData.position;
@@ -51,6 +52,7 @@ public class CricketDataDAO {
         this.econ = wicketsData.econ;
         this.fourWicks = wicketsData.fourWicks;
         this.fiveWicks = wicketsData.fiveWicks;
+        this.bolavg = wicketsData.average;
     }
 
     @Override

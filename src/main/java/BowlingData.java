@@ -75,7 +75,7 @@ public class BowlingData {
                 ", econ=" + econ +
                 ", strickRate=" + strickRate +
                 ", fourWicks=" + fourWicks +
-                ", fiveWicks='" + fiveWicks + '\'' +
+                ", fiveWicks='" + fiveWicks +
                 '}';
     }
 }

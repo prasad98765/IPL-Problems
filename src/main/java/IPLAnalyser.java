@@ -15,19 +15,14 @@ public class IPLAnalyser {
         this.player = player;
     }
 
-    public int lodeIPLCricketData(String csvFilePath) throws IPLAnalyserException {
+    public int lodeIPLCricketData(String... csvFilePath) throws IPLAnalyserException {
         playerList = new LoadDataFactory().loadCricketData(player, csvFilePath);
         return playerList.size();
     }
 
     public ArrayList getSortedDatafieldsWise(FieldWiseSorting.fields parameter) {
         Comparator<CricketDataDAO> batsmanComparator = null;
-        if (Player.Batting.equals(player)) {
             batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
-        }
-        if (Player.Bowling.equals(player)) {
-            batsmanComparator = new FieldWiseSorting().getParameterFields(parameter);
-        }
         ArrayList batsmanList = playerList.values().stream()
                 .sorted(batsmanComparator)
                 .map(batsmanDAO -> batsmanDAO.getIPLDTO(player))

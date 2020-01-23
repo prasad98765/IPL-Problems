@@ -98,6 +98,7 @@ public class BowlingAnalysisTest {
         }
     }
 
+
     //Exception test
     @Test
     public void givenWrongIPLCSVFile_shouldReturnException() {

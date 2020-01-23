@@ -6,7 +6,7 @@ public class FieldWiseSorting {
 
     static Map<fields, Comparator<CricketDataDAO>> playerData = new HashMap();
 
-    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE,BOWLING_STRIKE_RATE_WITH_AVERAGE,BOWLING_AVERAGE_WITH_STRIKE_RATE,BOWLING_WICKET_WITH_AVERAGE,BATTRING_BOWLING_WITH_AVERAGE}
+    enum fields {AVERAGE, STRIKERATE, BOUNDARIES, STRIKERATE_WITH_BOUNDARIES, STRIKERATE_WITH_AVERAGE, RUN_WITH_AVERAGE, BOWLING_AVERAGE,BOWLING_STRIKE_RATE,BOWLING_ECONOMY_RATE,BOWLING_STRIKE_RATE_WITH_AVERAGE,BOWLING_AVERAGE_WITH_STRIKE_RATE,BOWLING_WICKET_WITH_AVERAGE,BATTING_BOWLING_AVG }
 
 
     public Comparator<CricketDataDAO> getParameterFields(FieldWiseSorting.fields parameter) {
@@ -34,7 +34,7 @@ public class FieldWiseSorting {
         playerData.put(fields.BOWLING_STRIKE_RATE_WITH_AVERAGE, strikeRateWith5wAnd4wComparator.thenComparing(bowlingStrikeRateComparator.reversed()));
         playerData.put(fields.BOWLING_AVERAGE_WITH_STRIKE_RATE, bowlingAverageComparator.reversed().thenComparing(bowlingStrikeRateComparator.reversed()));
         playerData.put(fields.BOWLING_WICKET_WITH_AVERAGE, wicketWithAverageComparator.thenComparing(bowlingAverageComparator));
-
+        playerData.put(fields.BATTING_BOWLING_AVG, avgComparator.thenComparing(bowlingAverageComparator));
         return playerData.get(parameter);
     }
 }

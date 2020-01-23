@@ -68,7 +68,7 @@ public class BatsmanData {
     public String toString() {
         return "BatsmanData{" +
                 "position=" + position++ +
-                ", player='" + player +
+                ", player='" + player + '\'' +
                 ", match=" + match +
                 ", innings=" + innings +
                 ", notOut=" + notOut +

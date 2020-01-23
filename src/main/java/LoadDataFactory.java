@@ -7,7 +7,8 @@ public class LoadDataFactory {
         }
         if (player.equals(IPLAnalyser.Player.Bowling)) {
             return new BowlingAdapter().loadIPLRunsPlayerData(csvFilePath);
-        } else {
+        }
+        else {
             throw new IPLAnalyserException("INCORRECT_COUNTRY", IPLAnalyserException.ExceptionType.INCORRECT_TYPE);
         }
     }
