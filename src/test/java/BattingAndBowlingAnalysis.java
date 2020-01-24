@@ -13,6 +13,7 @@ public class BattingAndBowlingAnalysis {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(IPL_MOST_RUNS_CSV_FILE_PATH,IPL_MOST_WKTS_CSV_FILE_PATH);
             List<BatsmanData> list = iplAnalyser.getSortedDatafieldsWise(FieldWiseSorting.fields.BATTING_BOWLING_AVG);
+            System.out.println(list);
             Assert.assertEquals("Harpreet Brar",list.get(99).player);
             Assert.assertEquals("MS Dhoni",list.get(0).player);
         } catch (IPLAnalyserException e) {
