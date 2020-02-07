@@ -55,6 +55,10 @@ public class CricketDataDAO {
         this.bolavg = wicketsData.average;
     }
 
+    public CricketDataDAO() {
+
+    }
+
     @Override
     public String toString() {
         return "CricketDataDAO{" +

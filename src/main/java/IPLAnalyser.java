@@ -4,8 +4,13 @@ import java.util.stream.Collectors;
 public class IPLAnalyser {
 
     Map<String,CricketDataDAO> playerList = null;
-
+    public TestStaticMethodIPLFactory loadDataFactory = new TestStaticMethodIPLFactory() ;
     public Player player;
+
+    public IPLAnalyser(TestStaticMethodIPLFactory loadDataFactory, Player player) {
+        this.loadDataFactory = loadDataFactory;
+        this.player = player;
+    }
 
     public enum Player {
         Batting, Bowling;
@@ -16,7 +21,7 @@ public class IPLAnalyser {
     }
 
     public int lodeIPLCricketData(String... csvFilePath) throws IPLAnalyserException {
-        playerList = new LoadDataFactory().loadCricketData(player, csvFilePath);
+        playerList = loadDataFactory.loadData(player, csvFilePath);
         return playerList.size();
     }
 

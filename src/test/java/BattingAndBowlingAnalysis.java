@@ -4,8 +4,8 @@ import org.junit.Test;
 import java.util.List;
 
 public class BattingAndBowlingAnalysis {
-    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "/home/admin1/IdeaProjects/IPL/src/test/resources/BattingData.csv";
-    private static final String IPL_MOST_WKTS_CSV_FILE_PATH = "/home/admin1/IdeaProjects/IPL/src/test/resources/FactsheetMostWkts.csv";
+    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/BattingData.csv";
+    private static final String IPL_MOST_WKTS_CSV_FILE_PATH = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/FactsheetMostWkts.csv";
 
     @Test
     public void givenIPLBowlingPlayerDataCSVFile_shouldReturnBestBattingAndBowlingAverage() {

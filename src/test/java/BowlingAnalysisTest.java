@@ -5,8 +5,8 @@ import java.util.List;
 
 public class BowlingAnalysisTest {
     private static final String WRONG_CSV_FILE = "./src/test/resources/IPL2019Player.csv";
-    private static final String WRONG_CSV_FILE_DATA = "/home/admin1/IdeaProjects/IPL/src/test/resources/WrongCSVFileData.csv";
-    private static final String IPL_MOST_WKTS_CSV_FILE_PATH = "/home/admin1/IdeaProjects/IPL/src/test/resources/FactsheetMostWkts.csv";
+    private static final String WRONG_CSV_FILE_DATA = "./src/test/resources/WrongCSVFileData.csv";
+    private static final String IPL_MOST_WKTS_CSV_FILE_PATH = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/FactsheetMostWkts.csv";
 
     @Test
     public void givenIPLBowlingPlayerDataCSVFile_ReturnsCorrectRecords() {

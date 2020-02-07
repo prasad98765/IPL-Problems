@@ -4,9 +4,9 @@ import org.junit.Test;
 import java.util.List;
 
 public class BatsmanAnalysisTest {
-    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "/home/admin1/IdeaProjects/IPL/src/test/resources/BattingData.csv";
-    private static final String WRONG_CSV_FILE = "./src/test/resources/IPL2019Player.csv";
-    private static final String WRONG_CSV_FILE_DATA = "/home/admin1/IdeaProjects/IPL/src/test/resources/WrongCSVFileData.csv";
+    private static final String IPL_MOST_RUNS_CSV_FILE_PATH = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/BattingData.csv";
+    private static final String WRONG_CSV_FILE = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/WrongCSVFileData.csv";
+    private static final String WRONG_CSV_FILE_DATA = "/home/admin1/Desktop/Prasad/IPL-Problems-master/src/test/resources/WrongCSVFileData.csv";
 
     @Test
     public void givenIPLRunsPlayerDataCSVFile_ReturnsCorrectRecords() {
@@ -105,7 +105,7 @@ public class BatsmanAnalysisTest {
             IPLAnalyser iplAnalyser = new IPLAnalyser(IPLAnalyser.Player.Batting);
             iplAnalyser.lodeIPLCricketData(WRONG_CSV_FILE);
         } catch (IPLAnalyserException e) {
-            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA, e.type);
+            Assert.assertEquals(IPLAnalyserException.ExceptionType.INVALID_FILE_DATA_PROBLEM, e.type);
         }
     }
 
